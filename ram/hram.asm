@@ -395,8 +395,10 @@ hFieldMoveMonMenuTopMenuItemX:: db
 
 hJoyInput:: db
 
+hGBC:: db ; gbcnote: hram indicator from pokeyellow for where we're playing on GBC
+
 hDisableJoypadPolling:: db
 
-	ds 5
+	ds 4
 
 ENDSECTION

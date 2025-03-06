@@ -378,6 +378,8 @@ NEXTU
 wDexRatingNumMonsSeen:: db
 wDexRatingNumMonsOwned:: db
 wDexRatingText:: db
+wTrainerCardBadgeAttributes:: ; cc5d
+;gbcnote - modified to match yellow
 
 NEXTU
 ; If a random number greater than this value is generated, then the player is
@@ -1030,7 +1032,8 @@ wScriptedNPCWalkCounter:: db
 	ds 1
 
 ; always 0 since full CGB support was not implemented
-wOnCGB:: db
+;gbcnote - moved to hram
+;wOnCGB:: db
 
 ; if running on SGB, it's 1, else it's 0
 wOnSGB:: db
@@ -1066,7 +1069,10 @@ UNION
 wPartyMenuBlkPacket:: ds $30
 
 NEXTU
-	ds 29
+	ds 9
+;gbcnote - modified to match yellow
+wPartyHPBarAttributes:: ; cf36
+	ds 20
 ; storage buffer for various strings
 wStringBuffer:: ds 20
 
@@ -2034,7 +2040,20 @@ wRoute18Gate1FCurScript:: db
 	ds 78
 wGameProgressFlagsEnd::
 
-	ds 56
+wGBCBasePalPointers:: 
+	ds NUM_ACTIVE_PALS * 2 ; 8 bytes
+wGBCPal:: 
+	ds PAL_SIZE ; 8 bytes
+wLastBGP:: 
+	ds 1
+wLastOBP0:: 
+	ds 1
+wLastOBP1:: 
+	ds 1 
+wBGPPalsBuffer:: 
+	ds NUM_ACTIVE_PALS * PAL_SIZE ;32 bytes
+	
+	ds 5
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
@@ -2242,6 +2261,11 @@ wBoxMonNicksEnd::
 
 wBoxDataEnd::
 
+wEXPBarPixelLength::  ds 1
+wEXPBarBaseEXP::      ds 3
+wEXPBarCurEXP::       ds 3
+wEXPBarNeededEXP::    ds 3
+wEXPBarKeepFullFlag:: ds 1
 
 SECTION "Stack", WRAM0
 

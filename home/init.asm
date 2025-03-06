@@ -53,8 +53,8 @@ DEF rLCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << 
 
 	call ClearVram
 
-	ld hl, STARTOF(HRAM)
-	ld bc, SIZEOF(HRAM)
+	ld hl, $ff80
+	ld bc, $fffe - $ff80	;gbcnote - don't clear hGBC
 	call FillMemory
 
 	call ClearSprites

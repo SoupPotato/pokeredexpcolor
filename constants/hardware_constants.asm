@@ -91,6 +91,7 @@ DEF rLCDC_TILE_DATA      EQU 4
 DEF rLCDC_WINDOW_ENABLE  EQU 5
 DEF rLCDC_WINDOW_TILEMAP EQU 6
 DEF rLCDC_ENABLE         EQU 7
+DEF rLCDC_ENABLE_MASK    EQU 1 << rLCDC_ENABLE
 DEF rSTAT             EQU $ff41 ; LCDC Status (R/W)
 DEF rSCY              EQU $ff42 ; Scroll Y (R/W)
 DEF rSCX              EQU $ff43 ; Scroll X (R/W)
