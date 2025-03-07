@@ -899,7 +899,7 @@ TranslatePalPacketToBGMapAttributes::
 ; translate the SGB pals for blk packets into something usable for the GBC
 	push hl
 	pop de
-	ld hl, PalPacketPointersStart
+	ld hl, PalPacketPointers
 	ld a, [hli]
 	ld c, a
 .loop
