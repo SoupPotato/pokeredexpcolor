@@ -7062,3 +7062,97 @@ LoadMonBackPic:
 	ldh a, [hLoadedROMBank]
 	ld b, a
 	jp CopyVideoData
+
+SetAttackAnimPal:
+	call GetPredefRegisters
+	
+	ld a, $f0
+	ld [wAnimPalette], a
+	
+	ld a, [hGBC]
+	and a
+	ret z 
+	
+	ld a, [wIsInBattle]
+	and a
+	ret z
+
+	;only continue for valid move animations
+	ld a, [wAnimationID]
+	and a
+	ret z
+	cp STRUGGLE
+	ret nc	
+	
+	ld a, $e4
+	ld [wAnimPalette], a
+	
+	push hl
+	push bc
+	push de
+	ld a, [wCurPartySpecies]
+	push af
+	
+;doing a move animation, so find its type and apply color
+	ld a, [hWhoseTurn]
+	and a
+	ld hl, wPlayerMoveType
+	jr z, .playermove
+	ld hl, wEnemyMoveType
+.playermove
+	ld a, [hl]
+	ld bc, $0000
+	ld c, a
+	ld hl, TypePalColorList
+	add hl, bc
+	ld a, [hl]
+	ld b, a
+
+	ld c, 4
+.transfer
+	ld d, CONVERT_OBP0
+	ld e, c
+	dec e
+	ld a, b	
+	add VICTREEBEL+1
+	ld [wCurPartySpecies], a
+	push bc
+	farcall TransferMonPal
+	pop bc
+	dec c
+	jr nz, .transfer
+	
+	pop af
+	ld [wCurPartySpecies], a
+	pop de
+	pop bc
+	pop hl
+	ret	
+TypePalColorList:
+	db PAL_BW;normal
+	db PAL_BW;fighting
+	db PAL_BW;flying
+	db PAL_PURPLEMON;poison
+	db PAL_BW;ground
+	db PAL_GRAYMON;rock
+	db PAL_BW;untyped
+	db PAL_BW;bug
+	db PAL_WHITE;ghost
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_BW;unused
+	db PAL_REDMON;fire
+	db PAL_CYANMON;water
+	db PAL_GREENMON;grass
+	db PAL_YELLOWMON;electric
+	db PAL_PINKMON;psychic
+	db PAL_CYANMON;ice
+	db PAL_BLUEMON;dragon

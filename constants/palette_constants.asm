@@ -74,4 +74,7 @@ DEF SET_PAL_DEFAULT EQU $ff
 	const PAL_25        ; $25
 	const PAL_26        ; $26
 	const PAL_27        ; $27
+;joenote - custom pals
+	const PAL_BW        ; $28	;gbc only
+	const PAL_WHITE     ; $29	;gbc only
 DEF NUM_SGB_PALS EQU const_value

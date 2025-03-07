@@ -264,3 +264,16 @@ ENDC
 	RGB  9,  9,  9
 	RGB 31, 21,  0
 	RGB  3,  3,  3
+
+	; PAL_BW	;joenote - adding a black & white palette just for GBC
+	RGB 31, 31, 31
+	RGB 28, 28, 28
+	RGB 16, 16, 16
+	RGB  3,  3,  3
+
+
+	; PAL_WHITE
+	RGB 31, 31, 31
+	RGB 31, 31, 31
+	RGB 22, 22, 22
+	RGB  3,  3,  3
