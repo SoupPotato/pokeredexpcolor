@@ -1832,7 +1832,6 @@ DrawPlayerHUDAndHPBar:
 	call CenterMonName
 	call PlaceString
 	callfar PrintEXPBar
-	callfar PrintEXPBar
 	ld hl, wBattleMonSpecies
 	ld de, wLoadedMon
 	ld bc, wBattleMonDVs - wBattleMonSpecies

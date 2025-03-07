@@ -53,9 +53,13 @@ DEF rLCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << 
 
 	call ClearVram
 
+	ldh a, [hGBC]
+	push af
 	ld hl, $ff80
 	ld bc, $fffe - $ff80	;gbcnote - don't clear hGBC
 	call FillMemory
+	pop af
+	ldh [hGBC], a
 
 	call ClearSprites
 
