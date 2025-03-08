@@ -57,6 +57,7 @@ DEF rLCDC_DEFAULT EQU (1 << rLCDC_ENABLE) | (1 << rLCDC_WINDOW_TILEMAP) | (1 << 
 	push af
 	ld hl, STARTOF(HRAM)
 	ld bc, SIZEOF(HRAM)
+	xor a
 	call FillMemory
 	pop af
 	ldh [hGBC], a
