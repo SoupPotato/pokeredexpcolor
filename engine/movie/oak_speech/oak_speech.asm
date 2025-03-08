@@ -50,6 +50,7 @@ OakSpeech:
 	call LoadTextBoxTilePatterns
 	call PrepareOakSpeech
 	predef InitPlayerData2
+	call RunDefaultPaletteCommand	;gbcnote - reinitialize the default palette in case the pointers got cleared
 	ld hl, wNumBoxItems
 	ld a, POTION
 	ld [wCurItem], a
