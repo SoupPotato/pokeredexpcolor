@@ -84,11 +84,11 @@ GBCBasePalettes:
 	RGB 31, 31,  0	;unused yellow logo text
 IF DEF(_RED)
 	RGB 17, 23, 10	;unused on title screen
-	RGB 15,  3,  3	;version subtitle text color
+	RGB 28,  8,  4	;version subtitle text color
 ENDC
 IF DEF(_BLUE)
 	RGB 21,  0,  4	;unused on title screen
-	RGB  3,  3, 15	;version subtitle text color
+	RGB  3, 20, 30	;version subtitle text color
 ENDC
 
 	; PAL_LOGO2
@@ -105,62 +105,62 @@ ENDC
 
 	; PAL_MEWMON	;reworked to match red/blue tones 
 	RGB 31, 31, 31
-	RGB 30, 17,  11
-	RGB 11,  5,  14
+	RGB 31, 22, 16
+	RGB 14, 11, 18
 	RGB  3,  3,  3
 
 	; PAL_BLUEMON
 	RGB 31, 31, 31
-	RGB 16, 18, 31
-	RGB  0,  1, 25
+	RGB 18, 20, 31
+	RGB 10,  4, 27
 	RGB  3,  3,  3
 
 	; PAL_REDMON
 	RGB 31, 31, 31
-	RGB 31, 17,  0
-	RGB 31,  0,  0
+	RGB 31, 23,  7
+	RGB 28,  8,  4
 	RGB  3,  3,  3
 
 	; PAL_CYANMON
 	RGB 31, 31, 31
-	RGB 16, 26, 31
-	RGB  0, 17, 31
+	RGB 18, 28, 31
+	RGB  3, 20, 30
 	RGB  3,  3,  3
 
 	; PAL_PURPLEMON
 	RGB 31, 31, 31
-	RGB 25, 15, 31
-	RGB 19,  0, 22
+	RGB 30, 21, 31
+	RGB 23,  4, 25
 	RGB  3,  3,  3
 
 	; PAL_BROWNMON
 	RGB 31, 31, 31
-	RGB 29, 18, 10
-	RGB 17,  9,  5
+	RGB 29, 20, 14
+	RGB 20, 11,  9
 	RGB  3,  3,  3
 
 	; PAL_GREENMON
 	RGB 31, 31, 31
-	RGB 17, 31, 11
-	RGB  1, 22,  6
+	RGB 21, 30, 10
+	RGB  3, 21,  6
 	RGB  3,  3,  3
 
 	; PAL_PINKMON
 	RGB 31, 31, 31
-	RGB 31, 15, 18
-	RGB 31,  0,  6
+	RGB 31, 23, 26
+	RGB 31, 11, 16
 	RGB  3,  3,  3
 
 	; PAL_YELLOWMON
 	RGB 31, 31, 31
-	RGB 31, 31,  0
-	RGB 28, 14,  0
+	RGB 31, 29,  9
+	RGB 31, 16,  5
 	RGB  3,  3,  3
 
 	; PAL_GREYMON
 	RGB 31, 31, 31
-	RGB 20, 23, 10
-	RGB 11, 11,  5
+	RGB 27, 20, 21
+	RGB 14, 13, 19
 	RGB  3,  3,  3
 
 ;gbcnote - retouched all the slot palettes to match the red/blue coloring
