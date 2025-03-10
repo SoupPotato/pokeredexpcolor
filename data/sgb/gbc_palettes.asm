@@ -3,80 +3,80 @@
 GBCBasePalettes:
 	; PAL_ROUTE
 	RGB 31, 31, 31
-	RGB 16, 31,  4
-	RGB 11, 23, 31
+	RGB 19, 28,  5
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_PALLET
 	RGB 31, 31, 31
-	RGB 23, 17, 31
-	RGB 11, 23, 31
+	RGB 22, 27, 26
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_VIRIDIAN
 	RGB 31, 31, 31
-	RGB 19, 31,  0
-	RGB 11, 23, 31
+	RGB 14, 28,  1
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_PEWTER
 	RGB 31, 31, 31
-	RGB 18, 18, 15
-	RGB 11, 23, 31
+	RGB 20, 20, 14
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_CERULEAN
 	RGB 31, 31, 31
-	RGB  5,  8, 31
-	RGB 11, 23, 31
+	RGB 13, 16, 29
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_LAVENDER
 	RGB 31, 31, 31
-	RGB 25,  4, 31
-	RGB 11, 23, 31
+	RGB 26, 13, 29
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_VERMILION
 	RGB 31, 31, 31
-	RGB 31, 19,  0
-	RGB 11, 23, 31
+	RGB 31, 16,  4
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_CELADON
 	RGB 31, 31, 31
-	RGB  5, 31,  5
-	RGB 11, 23, 31
+	RGB  4, 31, 16
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_FUCHSIA
 	RGB 31, 31, 31
-	RGB 31, 15, 15
-	RGB 11, 23, 31
+	RGB 31, 15, 20
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_CINNABAR
 	RGB 31, 31, 31
-	RGB 31,  8,  8
-	RGB 11, 23, 31
+	RGB 29,  9,  5
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_INDIGO
 	RGB 31, 31, 31
-	RGB 11,  8, 31
-	RGB 11, 23, 31
+	RGB 20, 13, 29
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_SAFFRON
 	RGB 31, 31, 31
-	RGB 31, 31,  0
-	RGB 11, 23, 31
+	RGB 28, 26,  0
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_TOWNMAP
 	RGB 31, 31, 31
-	RGB  0, 21, 31
-	RGB 10, 28,  0
+	RGB  9, 23, 28
+	RGB 14, 28,  1
 	RGB  1,  1,  1
 
 	; PAL_LOGO1
@@ -105,8 +105,8 @@ ENDC
 
 	; PAL_MEWMON	;reworked to match red/blue tones 
 	RGB 31, 31, 31
-	RGB 31, 22, 16
-	RGB 14, 11, 18
+	RGB 30, 20, 15
+	RGB 12, 10, 16
 	RGB  3,  3,  3
 
 	; PAL_BLUEMON
@@ -117,8 +117,8 @@ ENDC
 
 	; PAL_REDMON
 	RGB 31, 31, 31
-	RGB 31, 23,  7
-	RGB 28,  8,  4
+	RGB 31, 18,  4
+	RGB 25,  5,  0
 	RGB  3,  3,  3
 
 	; PAL_CYANMON
@@ -141,7 +141,7 @@ ENDC
 
 	; PAL_GREENMON
 	RGB 31, 31, 31
-	RGB 21, 30, 10
+	RGB 18, 31, 10
 	RGB  3, 21,  6
 	RGB  3,  3,  3
 
@@ -153,7 +153,7 @@ ENDC
 
 	; PAL_YELLOWMON
 	RGB 31, 31, 31
-	RGB 31, 29,  9
+	RGB 31, 30,  6
 	RGB 31, 16,  5
 	RGB  3,  3,  3
 
@@ -206,7 +206,7 @@ ENDC
 
 	; PAL_BLACK
 	RGB 31, 31, 31
-	RGB  3,  3,  3
+	RGB  6,  6,  6
 	RGB  3,  3,  3
 	RGB  3,  3,  3
 
@@ -237,8 +237,8 @@ ENDC
 
 	; PAL_CAVE
 	RGB 31, 31, 31
-	RGB 23,  8,  0
-	RGB 17, 14, 11
+	RGB 23, 10,  3
+	RGB 17, 14, 12
 	RGB  3,  3,  3
 
 	; PAL_GAMEFREAK
@@ -250,7 +250,7 @@ ENDC
 	; PAL_25
 	RGB 31, 31, 31
 	RGB 31, 31,  0
-	RGB 11, 23, 31
+	RGB  9, 23, 28
 	RGB  3,  3,  3
 
 	; PAL_26
