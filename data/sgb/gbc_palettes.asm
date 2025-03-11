@@ -117,14 +117,14 @@ ENDC
 
 	; PAL_REDMON
 	RGB 31, 31, 31
-	RGB 31, 18,  4
-	RGB 25,  5,  0
+	RGB 31, 19,  4
+	RGB 28,  4,  0
 	RGB  3,  3,  3
 
 	; PAL_CYANMON
 	RGB 31, 31, 31
-	RGB 18, 28, 31
-	RGB  3, 20, 30
+	RGB 14, 26, 30
+	RGB  1, 17, 29
 	RGB  3,  3,  3
 
 	; PAL_PURPLEMON
