@@ -12,7 +12,7 @@ DefaultNamesRivalList:
 	db "JOHN@"
 ENDC
 
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 DefaultNamesPlayerList:
 	db "NEW NAME@"
 	db "BLUE@"

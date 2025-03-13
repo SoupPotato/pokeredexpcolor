@@ -148,7 +148,6 @@ SECTION "Battle Engine 3", ROMX
 
 INCLUDE "engine/battle/print_type.asm"
 INCLUDE "engine/battle/save_trainer_name.asm"
-INCLUDE "engine/battle/move_effects/focus_energy.asm"
 
 
 SECTION "Battle Engine 4", ROMX
@@ -169,16 +168,11 @@ INCLUDE "engine/slots/game_corner_slots2.asm"
 SECTION "Battle Engine 6", ROMX
 
 INCLUDE "engine/battle/move_effects/mist.asm"
-INCLUDE "engine/battle/move_effects/one_hit_ko.asm"
 
 
 SECTION "Slot Machines", ROMX
 
-INCLUDE "engine/movie/title2.asm"
-INCLUDE "engine/battle/link_battle_versus_text.asm"
 INCLUDE "engine/slots/slot_machine.asm"
-INCLUDE "engine/events/pewter_guys.asm"
-INCLUDE "engine/math/multiply_divide.asm"
 INCLUDE "engine/slots/game_corner_slots.asm"
 
 
@@ -308,6 +302,15 @@ SECTION "Battle Engine 11", ROMX
 
 INCLUDE "engine/battle/decrement_pp.asm"
 INCLUDE "gfx/version.asm"
+
+SECTION "Battle Engine 12", ROMX
+
+INCLUDE "engine/battle/move_effects/focus_energy.asm"
+INCLUDE "engine/battle/move_effects/one_hit_ko.asm"
+INCLUDE "engine/movie/title2.asm"
+INCLUDE "engine/battle/link_battle_versus_text.asm"
+INCLUDE "engine/events/pewter_guys.asm"
+INCLUDE "engine/math/multiply_divide.asm"
 
 
 SECTION "bank1C", ROMX

@@ -892,7 +892,7 @@ SlotMachineTiles1:
 IF DEF(_RED)
 	INCBIN "gfx/slots/red_slots_1.2bpp"
 ENDC
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 	INCBIN "gfx/slots/blue_slots_1.2bpp"
 ENDC
 SlotMachineTiles1End:

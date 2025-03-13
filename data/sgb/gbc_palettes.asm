@@ -84,11 +84,15 @@ GBCBasePalettes:
 	RGB 31, 31,  0	;unused yellow logo text
 IF DEF(_RED)
 	RGB 17, 23, 10	;unused on title screen
-	RGB 28,  8,  4	;version subtitle text color
+	RGB 28,  4,  0	;version subtitle text color
 ENDC
 IF DEF(_BLUE)
 	RGB 21,  0,  4	;unused on title screen
-	RGB  3, 20, 30	;version subtitle text color
+	RGB  1, 17, 29	;version subtitle text color
+ENDC
+IF DEF(_GREEN)
+	RGB 21,  0,  4	;unused on title screen
+	RGB  3, 21,  6	;version subtitle text color
 ENDC
 
 	; PAL_LOGO2
@@ -176,7 +180,7 @@ ENDC
 IF DEF(_RED)
 	RGB 20,  8, 15	;"3" icon background color
 ENDC
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 	RGB 9,  5, 30	
 ENDC
 	RGB  3,  3,  3	;"3" icon outline
@@ -187,7 +191,7 @@ ENDC
 IF DEF(_RED)
 	RGB 20,  8, 15	;"2" icon background color
 ENDC
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 	RGB 9,  5, 30	
 ENDC
 	RGB  3,  3,  3	;"2" icon outline
@@ -198,7 +202,7 @@ IF DEF(_RED)
 	RGB  9,  5, 30	;"1" icon shape color
 	RGB 20,  8, 15	;"1" icon background color
 ENDC
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 	RGB 20,  8, 15
 	RGB 9,  5, 30
 ENDC

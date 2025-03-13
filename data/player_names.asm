@@ -14,7 +14,7 @@ DefaultNamesRival:
 	db   "@"
 ENDC
 
-IF DEF(_BLUE)
+IF DEF(_BLUE) || DEF(_GREEN)
 DefaultNamesPlayer:
 	db   "NEW NAME"
 	next "BLUE"
