@@ -7065,10 +7065,17 @@ LoadMonBackPic:
 
 SetAttackAnimPal:
 	call GetPredefRegisters
-	
+
+	;set wAnimPalette based on if in grayscale or color
+	ld a, $e4
+	ld [wAnimPalette], a
+	ld a, [wOnSGB]
+	and a
+	ret z
 	ld a, $f0
 	ld [wAnimPalette], a
 	
+	;return if not on a GBC
 	ld a, [hGBC]
 	and a
 	ret z 
@@ -7206,18 +7213,20 @@ SetAttackAnimPal:
 	jr .starttransfer
 ;this functions sets z flag if not using a ball item, otherwise clears z flag if using a ball item
 CheckIfBall:
-	ld a, [wAnimationID]
-	cp TOSS_ANIM
-	jr z, .is_ball
-	cp ULTRATOSS_ANIM
-	jr nz, .not_ball
-.is_ball
-	ld a, 1
-	and a
-	ret
-.not_ball
-	xor a
-	ret
+	ld a, [wCurPartySpecies]
+ 	and a
+ 	jr z, .not_ball
+ 	cp SAFARI_BALL
+ 	jr z, .is_ball
+ 	cp POKE_BALL + 1
+ 	jr nc, .not_ball
+ .is_ball
+ 	ld a, 1
+ 	and a
+ 	ret
+ .not_ball
+ 	xor a
+ 	ret
 
 ;This function copies BGP colors 0-3 into OBP colors 0-3
 ;It is meant to reset the object palettes on the fly
