@@ -649,6 +649,14 @@ DEF index = 0
 		call TransferCurOBPData
 DEF index = index + 1
 	ENDR
+
+	ld a, PAL_EXPBAR
+	call GetGBCBasePalAddress
+	xor a
+	call DMGPalToGBCPal
+	ld a, 4
+	call TransferCurBGPData
+
 	ret
 
 GetGBCBasePalAddress:: ;gbcnote - new function
@@ -792,7 +800,7 @@ TransferBGPPals::
 	ld [rBGPI], a
 	ld de, rBGPD
 	ld hl, wBGPPalsBuffer
-	ld c, 4 * PAL_SIZE
+	ld c, 5 * PAL_SIZE
 .loop
 	ld a, [hli]
 	ld [de], a
@@ -860,6 +868,14 @@ DEF index = 0
 		call BufferBGPPal	; Copy wGBCPal to palette indexed in wBGPPalsBuffer.
 DEF index = index + 1
 	ENDR
+
+	ld a, PAL_EXPBAR
+	call GetGBCBasePalAddress
+	xor a
+	call DMGPalToGBCPal
+	ld a, 4
+	call BufferBGPPal
+
 	call TransferBGPPals	;Transfer wBGPPalsBuffer contents to rBGPD
 	ret
 

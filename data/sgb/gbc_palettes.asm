@@ -101,11 +101,11 @@ ENDC
 	RGB  7,  7, 25	;blue logo text shadow
 	RGB  0,  0, 17	;blue logo text outline
 
-	; PAL_0F
+	; PAL_EXPBAR
 	RGB 31, 31, 31
-	RGB 13,  1, 31
-	RGB  0,  9, 31
-	RGB  1,  1,  1
+	RGB 31, 31, 00
+	RGB 04, 17, 31
+	RGB  3,  3,  3
 
 	; PAL_MEWMON	;reworked to match red/blue tones 
 	RGB 31, 31, 31
