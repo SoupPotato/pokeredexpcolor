@@ -1,6 +1,9 @@
 SECTION "Tilesets 1", ROMX
-
+IF DEF(_GREEN)
+Overworld_GFX::     INCBIN "gfx/tilesets/tilesets_rg/overworld.2bpp"
+ELSE
 Overworld_GFX::     INCBIN "gfx/tilesets/overworld.2bpp"
+ENDC
 Overworld_Block::   INCBIN "gfx/blocksets/overworld.bst"
 
 RedsHouse1_GFX::
@@ -39,7 +42,11 @@ ForestGate_Block::
 Museum_Block::
 Gate_Block::        INCBIN "gfx/blocksets/gate.bst"
 
+IF DEF(_GREEN)
+Forest_GFX::        INCBIN "gfx/tilesets/tilesets_rg/forest.2bpp"
+ELSE
 Forest_GFX::        INCBIN "gfx/tilesets/forest.2bpp"
+ENDC
 Forest_Block::      INCBIN "gfx/blocksets/forest.bst"
 Facility_GFX::      INCBIN "gfx/tilesets/facility.2bpp"
 Facility_Block::    INCBIN "gfx/blocksets/facility.bst"
