@@ -379,6 +379,10 @@ UpdateMovingBgTiles::
 	and a
 	ret z
 
+	ldh a, [rLY]
+	cp $90 ; check if not in vblank period??? (maybe if vblank is too long)
+	ret c
+
 	ldh a, [hMovingBGTilesCounter1]
 	inc a
 	ldh [hMovingBGTilesCounter1], a
