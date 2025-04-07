@@ -2037,7 +2037,7 @@ wSeafoamIslandsB3FCurScript:: db
 wRoute23CurScript:: db
 wSeafoamIslandsB4FCurScript:: db
 wRoute18Gate1FCurScript:: db
-	ds 78
+	ds 75
 wGameProgressFlagsEnd::
 
 wGBCBasePalPointers:: 
@@ -2051,9 +2051,8 @@ wLastOBP0::
 wLastOBP1:: 
 	ds 1 
 wBGPPalsBuffer:: 
-	ds NUM_ACTIVE_PALS * PAL_SIZE ;32 bytes
-	
-	ds 5
+	ds (NUM_ACTIVE_PALS + 1) * PAL_SIZE ;32 bytes
+
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
 
