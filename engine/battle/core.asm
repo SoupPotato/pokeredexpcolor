@@ -7172,8 +7172,12 @@ SetAttackAnimPal:
 	ld b, PAL_YELLOWMON
 .not_payday
 	cp RECOVER
-	jr nz, .starttransfer
+	jr nz, .not_recover
 	ld b, PAL_YELLOWMON
+.not_recover
+	cp PETAL_DANCE
+	jr nz, .starttransfer
+	ld b, PAL_PINKMON
 .starttransfer
 	;make sure to reset palette/shade data into OBP0
 	;have to do this so colors transfer to the proper positions

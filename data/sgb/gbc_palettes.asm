@@ -133,7 +133,7 @@ ENDC
 
 	; PAL_PURPLEMON
 	RGB 31, 31, 31
-	RGB 30, 21, 31
+	RGB 28, 19, 31
 	RGB 23,  4, 25
 	RGB  3,  3,  3
 
@@ -217,7 +217,7 @@ ENDC
 	; PAL_GREENBAR
 	RGB 31, 31, 31
 	RGB 31, 31,  0
-	RGB  0, 31,  0
+	RGB 00, 26,  0
 	RGB  3,  3,  3
 
 	; PAL_YELLOWBAR
