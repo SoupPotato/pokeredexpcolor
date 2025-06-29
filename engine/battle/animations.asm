@@ -441,7 +441,7 @@ MoveAnimation:
 	call WaitForSoundToFinish
 	xor a
 	ld [wSubAnimSubEntryAddr], a
-	ld [wUnusedMoveAnimByte], a
+	;ld [wUnusedMoveAnimByte], a
 	ld [wSubAnimTransform], a
 	dec a ; NO_MOVE - 1
 	ld [wAnimSoundID], a
@@ -844,15 +844,15 @@ DoBlizzardSpecialEffects:
 
 ; flashes the screen at 3 points in the subanimation
 ; unused
-FlashScreenUnused:
-	ld a, [wSubAnimCounter]
-	cp 14
-	jp z, AnimationFlashScreen
-	cp 9
-	jp z, AnimationFlashScreen
-	cp 2
-	jp z, AnimationFlashScreen
-	ret
+;FlashScreenUnused:
+;	ld a, [wSubAnimCounter]
+;	cp 14
+;	jp z, AnimationFlashScreen
+;	cp 9
+;	jp z, AnimationFlashScreen
+;	cp 2
+;	jp z, AnimationFlashScreen
+;	ret
 
 ; function to make the pokemon disappear at the beginning of the animation
 TradeHidePokemon:
@@ -1080,13 +1080,13 @@ AnimationDarkenMonPalette:
 	lb bc, $f9, $f4
 	jr SetAnimationBGPalette
 
-AnimationUnusedPalette1:
-	lb bc, $fe, $f8
-	jr SetAnimationBGPalette
+;AnimationUnusedPalette1:
+;	lb bc, $fe, $f8
+;	jr SetAnimationBGPalette
 
-AnimationUnusedPalette2:
-	lb bc, $ff, $ff
-	jr SetAnimationBGPalette
+;AnimationUnusedPalette2:
+;	lb bc, $ff, $ff
+;	jr SetAnimationBGPalette
 
 AnimationResetScreenPalette:
 ; Restores the screen's palette to the normal palette.
@@ -1144,12 +1144,12 @@ AnimationWaterDropletsEverywhere:
 	ld a, 16
 	ld [wBaseCoordY], a
 	ld a, 0
-	ld [wUnusedWaterDropletsByte], a
+	;ld [wUnusedWaterDropletsByte], a
 	call _AnimationWaterDroplets
 	ld a, 24
 	ld [wBaseCoordY], a
 	ld a, 32
-	ld [wUnusedWaterDropletsByte], a
+	;ld [wUnusedWaterDropletsByte], a
 	call _AnimationWaterDroplets
 	dec d
 	jr nz, .loop
@@ -1310,15 +1310,29 @@ BattleAnimWriteOAMEntry:
 ; X coordinate = [wBaseCoordX]
 ; tile = d
 ; attributes = 0
+	ld a, $1
+	ld [wdef5], a
 	ld a, e
 	add 8
 	ld e, a
 	ld [hli], a
+	cp 40
+	jr c, .asm_793d8
+	ld a, [wdef5]
+	inc a
+	ld [wdef5], a
+.asm_793d8
 	ld a, [wBaseCoordX]
 	ld [hli], a
+	cp 88
+	jr c, .asm_793e8
+	ld a, [wdef5]
+	add $2
+	ld [wdef5], a
+.asm_793e8
 	ld a, d
 	ld [hli], a
-	xor a
+	ld a, [wdef5]
 	ld [hli], a
 	ret
 
@@ -2515,6 +2529,14 @@ AnimationShakeEnemyHUD:
 	ld hl, vBGMap1 - $20 * 7
 	call BattleAnimCopyTileMapToVRAM
 
+; gbcnote - from pokemon yellow: update BGMap attributesMore actions
+	ldh a, [hGBC]
+	and a
+	jr z, .notGBC
+	ld d, 13
+	farcall LoadBGMapAttributes
+.notGBC
+
 ; Move the window so that the row below the enemy HUD (in BG map 0) lines up
 ; with the top row of the window on the screen. This makes it so that the window
 ; covers everything below the enemy HD with a copy that looks just like what
@@ -2548,6 +2570,15 @@ AnimationShakeEnemyHUD:
 	ldh [hWY], a
 	ld hl, vBGMap1
 	call BattleAnimCopyTileMapToVRAM
+
+; gbcnote - from yellow version: update BGMap attributesMore actions
+	ldh a, [hGBC]
+	and a
+	jr z, .notGBC2
+	ld d, 11
+	farcall LoadBGMapAttributes
+.notGBC2
+
 	xor a
 	ldh [hWY], a
 	call SaveScreenTilesToBuffer1

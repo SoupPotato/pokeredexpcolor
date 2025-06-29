@@ -2040,18 +2040,17 @@ wRoute18Gate1FCurScript:: db
 	ds 75
 wGameProgressFlagsEnd::
 
-wGBCBasePalPointers:: 
-	ds NUM_ACTIVE_PALS * 2 ; 8 bytes
-wGBCPal:: 
-	ds PAL_SIZE ; 8 bytes
-wLastBGP:: 
-	ds 1
-wLastOBP0:: 
-	ds 1
-wLastOBP1:: 
-	ds 1 
-wBGPPalsBuffer:: 
-	ds (NUM_ACTIVE_PALS + 1) * PAL_SIZE ;32 bytes
+;;;;;; GBC stuff from pokemon yellow
+
+wGBCBasePalPointers:: ds NUM_ACTIVE_PALS * 2 ; 8 bytes
+wGBCPal:: ds PAL_SIZE ; 8 bytes
+wLastBGP::db
+wLastOBP0::db
+wLastOBP1::db 
+wBGPPalsBuffer:: ds (NUM_ACTIVE_PALS + 1) * PAL_SIZE ;32 bytes
+wdef5:: db
+
+;;;;;;
 
 
 wObtainedHiddenItemsFlags:: flag_array MAX_HIDDEN_ITEMS
@@ -2063,7 +2062,7 @@ wObtainedHiddenCoinsFlags:: flag_array MAX_HIDDEN_COINS
 ; $02 = surfing
 wWalkBikeSurfState:: db
 
-	ds 10
+	ds 9
 
 wTownVisitedFlag:: flag_array NUM_CITY_MAPS
 
