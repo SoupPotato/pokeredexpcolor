@@ -7137,7 +7137,7 @@ SetAttackAnimPal:
 .not_growth
 	cp LEECH_LIFE
 	jr nz, .not_leechlife
-	ld b, PAL_YELLOWMON
+	ld b, PAL_REDMON
 .not_leechlife
 	cp SELFDESTRUCT
 	jr nz, .not_selfdestruct
@@ -7300,7 +7300,7 @@ TypePalColorList:
 	db PAL_BW;flying
 	db PAL_PURPLEMON;poison
 	db PAL_BW;ground
-	db PAL_GRAYMON;rock
+	db PAL_BROWNMON;rock
 	db PAL_BW;untyped
 	db PAL_BW;bug
 	db PAL_WHITE;ghost
