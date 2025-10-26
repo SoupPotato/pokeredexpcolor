@@ -64,7 +64,7 @@ ItemUsePtrTable:
 	dw UnusableItem      ; BIKE_VOUCHER
 	dw ItemUseXAccuracy  ; X_ACCURACY
 	dw ItemUseEvoStone   ; LEAF_STONE
-	dw ItemUseCardKey    ; CARD_KEY
+	dw UnusableItem      ; CARD_KEY
 	dw UnusableItem      ; NUGGET
 	dw UnusableItem      ; ITEM_32
 	dw ItemUsePokeDoll   ; POKE_DOLL
@@ -1549,59 +1549,7 @@ ItemUseXAccuracy:
 	set USING_X_ACCURACY, [hl] ; X Accuracy bit
 	jp PrintItemUseTextAndRemoveItem
 
-; This function is bugged and never works. It always jumps to ItemUseNotTime.
-; The Card Key is handled in a different way.
-ItemUseCardKey:
-	xor a
-	ld [wUnusedCardKeyGateID], a
-	call GetTileAndCoordsInFrontOfPlayer
-	ld a, [GetTileAndCoordsInFrontOfPlayer]
-	cp $18
-	jr nz, .next0
-	ld hl, CardKeyTable1
-	jr .next1
-.next0
-	cp $24
-	jr nz, .next2
-	ld hl, CardKeyTable2
-	jr .next1
-.next2
-	cp $5e
-	jp nz, ItemUseNotTime
-	ld hl, CardKeyTable3
-.next1
-	ld a, [wCurMap]
-	ld b, a
-.loop
-	ld a, [hli]
-	cp -1
-	jp z, ItemUseNotTime
-	cp b
-	jr nz, .nextEntry1
-	ld a, [hli]
-	cp d
-	jr nz, .nextEntry2
-	ld a, [hli]
-	cp e
-	jr nz, .nextEntry3
-	ld a, [hl]
-	ld [wUnusedCardKeyGateID], a
-	jr .done
-.nextEntry1
-	inc hl
-.nextEntry2
-	inc hl
-.nextEntry3
-	inc hl
-	jr .loop
-.done
-	ld hl, ItemUseText00
-	call PrintText
-	ld hl, wStatusFlags1
-	set BIT_UNUSED_CARD_KEY, [hl] ; never checked
-	ret
 
-INCLUDE "data/events/card_key_coords.asm"
 
 ItemUsePokeDoll:
 	ld a, [wIsInBattle]
@@ -1826,48 +1774,54 @@ CoinCaseNumCoinsText:
 ItemUseOldRod:
 	call FishingInit
 	jp c, ItemUseNotTime
-	lb bc, 5, MAGIKARP
-	ld a, $1 ; set bite
+	call ReadOldRodData
+	ld c, e
+	ld b, d
+	ld a, $2
+	ld [wRodResponse], a
+	ld a, c
+	and a ; are there fish in the map?
+	jr z, DoNotGenerateFishingEncounter ; if not, do not generate an encounter
+	ld a, $1
+	ld [wRodResponse], a
 	jr RodResponse
+	xor a
+	ld [wRodResponse], a
+	jr DoNotGenerateFishingEncounter
 
 ItemUseGoodRod:
 	call FishingInit
 	jp c, ItemUseNotTime
-.RandomLoop
-	call Random
-	srl a
-	jr c, .SetBite
-	and %11
-	cp 2
-	jr nc, .RandomLoop
-	; choose which monster appears
-	ld hl, GoodRodMons
-	add a
-	ld c, a
-	ld b, 0
-	add hl, bc
-	ld b, [hl]
-	inc hl
-	ld c, [hl]
-	and a
-.SetBite
-	ld a, 0
-	rla
-	xor 1
-	jr RodResponse
-
-INCLUDE "data/wild/good_rod.asm"
+	call ReadGoodRodData
+	jr ContinueRod
 
 ItemUseSuperRod:
 	call FishingInit
 	jp c, ItemUseNotTime
 	call ReadSuperRodData
-	ld a, e
+;fallthrough
+ContinueRod:
+	ld c, e
+	ld b, d
+	ld a, $2
+	ld [wRodResponse], a
+	ld a, c
+	and a ; are there fish in the map?
+	jr z, DoNotGenerateFishingEncounter ; if not, do not generate an encounter
+	ld a, $1
+	ld [wRodResponse], a
+	call Random
+	and $1
+	jr nz, RodResponse
+	xor a
+	ld [wRodResponse], a
+	jr DoNotGenerateFishingEncounter
+
 RodResponse:
 	ld [wRodResponse], a
 
 	dec a ; is there a bite?
-	jr nz, .next
+	jr nz, DoNotGenerateFishingEncounter
 	; if yes, store level and species data
 	ld a, 1
 	ld [wMoveMissed], a
@@ -1876,7 +1830,7 @@ RodResponse:
 	ld a, c ; species
 	ld [wCurOpponent], a
 
-.next
+DoNotGenerateFishingEncounter:
 	ld hl, wWalkBikeSurfState
 	ld a, [hl] ; store the value in a
 	push af
@@ -2840,51 +2794,62 @@ IsNextTileShoreOrWater:
 
 INCLUDE "data/tilesets/water_tilesets.asm"
 
-ReadSuperRodData:
-; return e = 2 if no fish on this map
-; return e = 1 if a bite, bc = level,species
-; return e = 0 if no bite
+ReadOldRodData:
 	ld a, [wCurMap]
-	ld de, 3 ; each fishing group is three bytes wide
-	ld hl, SuperRodData
-	call IsInArray
-	jr c, .ReadFishingGroup
-	ld e, $2 ; $2 if no fishing groups found
-	ret
-
-.ReadFishingGroup
-; hl points to the fishing group entry in the index
-	inc hl ; skip map id
-
-	; read fishing group address
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-
-	ld b, [hl] ; how many mons in group
-	inc hl ; point to data
-	ld e, $0 ; no bite yet
-
-.RandomLoop
-	call Random
-	srl a
-	ret c ; 50% chance of no battle
-
-	and %11 ; 2-bit random number
-	cp b
-	jr nc, .RandomLoop ; if a is greater than the number of mons, regenerate
-
-	; get the mon
-	add a
 	ld c, a
-	ld b, $0
-	add hl, bc
-	ld b, [hl] ; level
-	inc hl
-	ld c, [hl] ; species
-	ld e, $1 ; $1 if there's a bite
+	ld hl, OldRodData
+	jr GoFish
+
+ReadGoodRodData:
+	ld a, [wCurMap]
+	ld c, a
+	ld hl, GoodRodData
+	jr GoFish
+
+ReadSuperRodData:
+	ld a, [wCurMap]
+	ld c, a
+	ld hl, SuperRodData
+;fallthrough
+GoFish:
+.loop
+	ld a, [hli]
+	cp $ff
+	jr z, .notfound
+	cp c
+	jr z, .found
+	ld de, $8
+	add hl, de
+	jr .loop
+.found
+	call GenerateRandomFishingEncounter
+	ret
+.notfound
+	ld de, $0
 	ret
 
+GenerateRandomFishingEncounter:
+	call Random
+	cp $66
+	jr c, .continue
+	inc hl
+	inc hl
+	cp $b2
+	jr c, .continue
+	inc hl
+	inc hl
+	cp $e5
+	jr c, .continue
+	inc hl
+	inc hl
+.continue
+	ld e, [hl]
+	inc hl
+	ld d, [hl]
+	ret
+
+INCLUDE "data/wild/old_rod.asm"
+INCLUDE "data/wild/good_rod.asm"
 INCLUDE "data/wild/super_rod.asm"
 
 ; reloads map view and processes sprite data
@@ -2934,6 +2899,8 @@ CheckMapForMon:
 	ld a, c
 	ld [de], a
 	inc de
+	inc hl
+	ret
 .nextEntry
 	inc hl
 	inc hl

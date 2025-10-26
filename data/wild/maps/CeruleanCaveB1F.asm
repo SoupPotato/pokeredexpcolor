@@ -17,5 +17,15 @@ ENDC
 	db 67, DITTO
 	end_grass_wildmons
 
-	def_water_wildmons 0 ; encounter rate
+	def_water_wildmons 5 ; encounter rate
+	db 40, PSYDUCK
+	db 40, SLOWPOKE
+	db 45, PSYDUCK
+	db 45, SLOWPOKE
+	db 50, PSYDUCK
+	db 50, SLOWPOKE
+	db 50, GOLDUCK
+	db 50, SLOWBRO
+	db 55, GOLDUCK
+	db 55, SLOWBRO
 	end_water_wildmons

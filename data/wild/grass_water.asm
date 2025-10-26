@@ -1,13 +1,13 @@
 WildDataPointers:
 	table_width 2
-	dw NothingWildMons         ; PALLET_TOWN
-	dw NothingWildMons         ; VIRIDIAN_CITY
+	dw SeaRoutesWildMons       ; PALLET_TOWN
+	dw PondRoutesWildMons      ; VIRIDIAN_CITY
 	dw NothingWildMons         ; PEWTER_CITY
-	dw NothingWildMons         ; CERULEAN_CITY
+	dw SeaRoutesWildMons       ; CERULEAN_CITY
 	dw NothingWildMons         ; LAVENDER_TOWN
-	dw NothingWildMons         ; VERMILION_CITY
-	dw NothingWildMons         ; CELADON_CITY
-	dw NothingWildMons         ; FUCHSIA_CITY
+	dw SeaRoutesWildMons       ; VERMILION_CITY
+	dw PondRoutesWildMons      ; CELADON_CITY
+	dw PondRoutesWildMons      ; FUCHSIA_CITY
 	dw NothingWildMons         ; CINNABAR_ISLAND
 	dw NothingWildMons         ; INDIGO_PLATEAU
 	dw NothingWildMons         ; SAFFRON_CITY
@@ -302,6 +302,7 @@ INCLUDE "data/wild/maps/SafariZoneEast.asm"
 INCLUDE "data/wild/maps/SafariZoneNorth.asm"
 INCLUDE "data/wild/maps/SafariZoneWest.asm"
 INCLUDE "data/wild/maps/SeaRoutes.asm"
+INCLUDE "data/wild/maps/PondRoutes.asm"
 INCLUDE "data/wild/maps/SeafoamIslands1F.asm"
 INCLUDE "data/wild/maps/SeafoamIslandsB1F.asm"
 INCLUDE "data/wild/maps/SeafoamIslandsB2F.asm"
